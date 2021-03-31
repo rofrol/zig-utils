@@ -22,3 +22,5 @@ After everything here has been setup correctly, you can use it by running for ex
 ```bash
 zupd-src x86_64-linux-gnu
 ```
+
+After it finishes building, the finished compiler is in `$HOME/.local/zig/current` so make sure it's in your path.

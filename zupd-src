@@ -19,7 +19,7 @@ CC=$(which clang) CXX=$(which clang++) cmake -G Ninja ..  || die
 ninja -j5 || die
 
 ROOT=$HOME/.local/zig
-TARGET=${ROOT}/ver/$(TARGET)-$(./zig version)
+TARGET=${ROOT}/ver/$TARGET-$(./zig version)
 
 if [ -d "${TARGET}" ]; then
 	echo "$(zig version) is already the current version!"
@@ -35,5 +35,5 @@ else
 	ln -s "${TARGET}" "${ROOT}/current" || die "failed to set new symlink!"
 fi
 
-echo "Current version is now: $(zig version)"
+echo "Current version is now: $($HOME/.local/zig/current/zig version)"
 rm -rf /tmp/zig
