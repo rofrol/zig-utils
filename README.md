@@ -4,16 +4,7 @@ A collection of utility scripts I use for zig
 
 ## zupd-src
 
-The `zupd-src` script is an updater script that builds from source. In order to use it
-you're going to need to have the following dependencies:
-
-* ninja
-* cmake
-* build-essential (or equivalent)
-* llvm-libs
-* lld-libs
-* clang
-* llvm
+The `zupd-src` script is an updater script that builds from source.
 
 The script also requires a `zig` folder to exist in `$HOME/.local` as well as this containing
 a `ver` folder, with a temporary folder in it called whatever your heart desires, and you must
