@@ -6,7 +6,7 @@ A collection of utility scripts I use for zig
 
 The `zupd-src` script is an updater script that builds from source.
 
-The script also requires a `zig` folder to exist in `$HOME/.local` as well as this containing
+The script requires any build deps zig needs, as well as a `zig` folder to exist in `$HOME/.local` as well as this containing
 a `ver` folder, with a temporary folder in it called whatever your heart desires, and you must
 then create a symlink to it in the `zig` folder so that your directory structure looks like this:
 
