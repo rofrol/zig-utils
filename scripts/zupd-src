@@ -1,0 +1,39 @@
+#!/bin/bash
+
+TARGET="$1"
+
+function die()
+{
+	if [ ! -z "${TARGET}" ]; then
+		rm -rf "${TARGET}"
+	fi
+	echo "$@"
+	exit 1
+}
+
+mkdir /tmp/zig
+cd /tmp/zig || die
+git clone https://github.com/ziglang/zig .
+mkdir build && cd build || die
+CC=$(which clang) CXX=$(which clang++) cmake -G Ninja ..  || die
+ninja -j5 || die
+
+ROOT=$HOME/.local/zig
+TARGET=${ROOT}/ver/$TARGET-$(./zig version)
+
+if [ -d "${TARGET}" ]; then
+	echo "$(zig version) is already the current version!"
+else
+	echo "Updating to $(./zig version)"
+
+	mkdir ${TARGET} || die "failed to create target directory ${TARGET}"
+
+	cp ./zig ${TARGET}/ || die  "failed to copy zig executable"
+	cp -r ../lib ${TARGET}/ || die  "failed to copy library directory"
+	
+	rm "${ROOT}/current" || die "failed to set new symlink!"
+	ln -s "${TARGET}" "${ROOT}/current" || die "failed to set new symlink!"
+fi
+
+echo "Current version is now: $($HOME/.local/zig/current/zig version)"
+rm -rf /tmp/zig
