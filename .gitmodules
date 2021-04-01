@@ -1,0 +1,9 @@
+[submodule "tools/zls"]
+	path = tools/zls
+	url = https://github.com/zigtools/zls
+[submodule "tools/zigmod"]
+	path = tools/zigmod
+	url = https://github.com/nektro/zigmod
+[submodule "tools/bootstrap"]
+	path = tools/bootstrap
+	url = https://github.com/ziglang/zig-bootstrap
