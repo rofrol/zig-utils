@@ -30,7 +30,7 @@ TARBALL=$(jq --raw-output '.tarball' ${REPO})
 SHASUM=$(jq --raw-output '.shasum' ${REPO})
 SIZE=$(jq --raw-output '.size' ${REPO})
 
-VERSION=$(basename ${TARBALL} | sed 's/.tar.xz$//')
+VERSION=$(basename ${TARBALL} .tar.xz)
 
 [ "${VERSION}" != "" ] || die "Could not extract version info"
 
