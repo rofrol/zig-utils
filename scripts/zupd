@@ -40,8 +40,7 @@ else
 	echo "Updating to ${VERSION}"
 
 	if curl "${TARBALL}" | tar -xJC ${ROOT}/ver; then
-		rm "${ROOT}/current" || die "failed to set new symlink!"
-		ln -s "${ROOT}/ver/${VERSION}" "${ROOT}/current" || die "failed to set new symlink!"
+		ln -sfn "${ROOT}/ver/${VERSION}" "${ROOT}/current" || die "failed to set new symlink!"
 	else
 		echo "Update failed!"
 		rm -rf "${ROOT}/ver/${VERSION}"
