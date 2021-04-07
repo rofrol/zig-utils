@@ -3,6 +3,7 @@
 ROOT=$HOME/.local/zig
 REPO_URL=https://ziglang.org/download/index.json
 TMPDIR=/tmp/zig
+SCRIPT_NAME=$(basename "$0")
 
 REPO_ENTRY=$1
 
@@ -13,10 +14,9 @@ function die()
 	exit 1
 }
 
-if [ ! -d "${ROOT}" ]; then
-	echo "Root directory ${ROOT} does not exist!"
-	exit 1
-fi
+[ -z "${1}" ] && die "Usage: ${SCRIPT_NAME} arch\n Arch according to ${REPO_URL}"
+
+mkdir -p "$ROOT/ver"
 
 REPO="${TMPDIR}/zig-repo.json"
 
@@ -31,6 +31,9 @@ SHASUM=$(jq --raw-output '.shasum' ${REPO})
 SIZE=$(jq --raw-output '.size' ${REPO})
 
 VERSION=$(basename ${TARBALL} .tar.xz)
+
+echo "$TARBALL"
+echo "$VERSION"
 
 [ "${VERSION}" != "" ] || die "Could not extract version info"
 
