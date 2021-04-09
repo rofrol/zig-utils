@@ -51,5 +51,6 @@ else
 fi
 
 echo "Current version is now: $($HOME/.local/zig/current/zig version)"
+echo "Add $ROOT/.local/zig/ver to your PATH"
 
 rm -r ${TMPDIR}
