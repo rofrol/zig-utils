@@ -37,7 +37,7 @@ echo "$VERSION"
 
 [ "${VERSION}" != "" ] || die "Could not extract version info"
 
-if [ $(basename $(readlink -f ${ROOT}/current)) = ${VERSION}" ]; then
+if [ $(basename $(readlink -f ${ROOT}/current)) = ${VERSION} ]; then
 	echo "${VERSION} is already the current version!"
 else
 	echo "Updating to ${VERSION}"
