@@ -37,7 +37,7 @@ echo "$VERSION"
 
 [ "${VERSION}" != "" ] || die "Could not extract version info"
 
-if [ -d "${ROOT}/ver/${VERSION}" ]; then
+if [ $(basename $(readlink -f $ROOT/current)) = ${VERSION}" ]; then
 	echo "${VERSION} is already the current version!"
 else
 	echo "Updating to ${VERSION}"
@@ -50,7 +50,7 @@ else
 	fi
 fi
 
-echo "Current version is now: $($HOME/.local/zig/current/zig version)"
+echo "Current version is now: $($ROOT/current/zig version)"
 echo "Add \$HOME/.local/zig/current to your PATH"
 
 rm -r ${TMPDIR}
