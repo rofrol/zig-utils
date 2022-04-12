@@ -10,11 +10,15 @@ REPO_ENTRY=$1
 function die()
 {
 	echo "$@"
-	rm -r ${TMPDIR}
+	rm -rf ${TMPDIR}
 	exit 1
 }
 
-[ -z "${1}" ] && die "Usage: ${SCRIPT_NAME} arch\n Arch according to ${REPO_URL}"
+if [ -z "${1}" ]; then
+  echo -e "Usage: ${SCRIPT_NAME} arch\n Arch according to ${REPO_URL}"
+  curl -s https://ziglang.org/download/index.json | jq '.master | keys'
+  exit 1
+fi
 
 mkdir -p "$ROOT/ver"
 
